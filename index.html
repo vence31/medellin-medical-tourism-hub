@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medellín Medical Tourism Master Hub | Plastic Surgery & Aesthetic Dentistry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #090b10;
+      --bg-card: #131722;
+      --bg-card-hover: #1c2233;
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --gold-primary: #d4af37;
+      --gold-light: #f5d77f;
+      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa7c11 100%);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --green-accent: #10b981;
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Master Top Bar */
+    .master-header {
+      background: #0e111a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 0;
+    }
+
+    .header-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-gradient);
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1.3rem;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold-primary);
+    }
+
+    /* Hero Banner */
+    .hero-banner {
+      padding: 60px 0 40px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 10%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3.2rem;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .text-gradient {
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 740px;
+      margin: 0 auto 36px;
+    }
+
+    /* Verticals Grid */
+    .verticals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px;
+      margin-bottom: 50px;
+    }
+
+    .vertical-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .vertical-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+    }
+
+    .vertical-header-img {
+      height: 220px;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .vertical-header-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+      transition: transform 0.5s ease;
+    }
+
+    .vertical-card:hover .vertical-header-img img {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    .vertical-tag-pill {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(15, 18, 26, 0.9);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      backdrop-filter: blur(8px);
+    }
+
+    .vertical-body {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .vertical-body h3 {
+      font-size: 1.7rem;
+      font-family: 'Playfair Display', Georgia, serif;
+      color: #fff;
+    }
+
+    .vertical-body p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .feature-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0;
+    }
+
+    .feature-tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e5e7eb;
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .btn-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-gold {
+      background: var(--gold-gradient);
+      color: #111;
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--gold-primary);
+    }
+
+    .btn-presenter {
+      background: #1a1e2b;
+      color: var(--gold-light);
+      border: 1px solid var(--border-gold);
+      grid-column: span 2;
+    }
+
+    .btn-presenter:hover {
+      background: rgba(212, 175, 55, 0.15);
+    }
+
+    /* Verification Quick Links Bar */
+    .verification-bar {
+      background: #10131c;
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 28px 36px;
+      margin-bottom: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .verif-info h4 {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .verif-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .verif-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge-check {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .badge-check:hover {
+      background: rgba(16, 185, 129, 0.2);
+    }
+
+    /* Master Footer */
+    .master-footer {
+      margin-top: auto;
+      background: #07080b;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 24px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 900px) {
+      .verticals-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="master-header">
+    <div class="container header-flex">
+      <div class="brand-group">
+        <div class="brand-icon"><i class="fa-solid fa-gem"></i></div>
+        <div>
+          <div class="brand-title">Medellín Medical Tourism Hub</div>
+          <div class="brand-sub">Curvas & Estética • Smile in Medellín • Medellín Ink Hub</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <a href="video_studio.html" class="badge-check" style="text-decoration:none; background:rgba(212,175,55,0.15); border-color:var(--border-gold); color:var(--gold-light);">
+          <i class="fa-solid fa-video"></i> Video & Reel Studio
+        </a>
+        <div style="font-size: 0.85rem; color: var(--gold-light);">
+          <i class="fa-solid fa-location-dot"></i> El Poblado • Milla de Oro • Rionegro
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-banner">
+    <div class="container">
+      <div class="hero-badge"><i class="fa-solid fa-plane-departure"></i> International Patient Acquisition Suite</div>
+      <h1 class="hero-title">
+        The Unified <span class="text-gradient">Medical, Dental & Tattoo Tourism</span> Ecosystem
+      </h1>
+      <p class="hero-desc">
+        Connecting North American medical travelers with board-certified plastic surgeons and master cosmetic dental clinics in Medellín, Colombia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Verticals Showcase -->
+  <main class="container">
+    <div class="verticals-grid">
+
+      <!-- Vertical 1: Plastic Surgery -->
+      <div class="vertical-card">
+        <div class="vertical-header-img">
+          <img src="../Curvas Medellin Body Contouring/assets/scraped_photos/dra_daniela/dra_daniela_photo_2.webp" alt="Plastic Surgery Medellin">
+          <span class="vertical-tag-pill"><i class="fa-solid fa-heart-pulse"></i> Body Contouring & Breast Aesthetics</span>
+        </div>
+        <div class="vertical-body">
+          <h3>Curvas & Estética Medellín</h3>
+          <p>
+            Specialized platform for Breast Augmentation (Motiva/Mentor), Mastopexy, BBL & High-Def Lipo 360, and Mommy Makeovers in JCI-level hospital suites (IQ InterQuirófanos, Quirónsalud).
+          </p>
+          <div class="feature-tags-row">
+            <span class="feature-tag">Dr. Luis Guillermo Tobón</span>
+            <span class="feature-tag">Dr. Zamir Páez</span>
+            <span class="feature-tag">Dr. Juan David Londoño</span>
+            <span class="feature-tag">Dra. Daniela Correa</span>
+          </div>
+          <div class="btn-actions-grid">
+            <a href="../Curvas Medellin Body Contouring/index.html" class="btn btn-gold"><i class="fa-solid fa-globe"></i> Open Portal</a>
+            <a href="../Curvas Medellin Body Contouring/admin.html" class="btn btn-outline"><i class="fa-solid fa-users"></i> CRM Leads</a>
+            <a href="../Curvas Medellin Body Contouring/presentation.html" class="btn btn-presenter">
+              <i class="fa-solid fa-microphone-lines"></i> Launch AI Slideshow (English & Spanish)
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical 2: Cosmetic Dentistry -->
+      <div class="vertical-card">
+        <div class="vertical-header-img">
+          <img src="../Smile in Medellin/assets/scraped_dental_photos/oral_studio/oral_studio_photo_5.webp" alt="Dental Tourism Medellin">
+          <span class="vertical-tag-pill"><i class="fa-solid fa-tooth"></i> Boutique Cosmetic Dentistry</span>
+        </div>
+        <div class="vertical-body">
+          <h3>Smile in Medellín</h3>
+          <p>
+            High-conversion dental tourism platform for E-Max® porcelain veneers, Swiss Straumann® implants, robotic CAD/CAM milling, and 5-day smile makeover vacation packages in El Poblado.
+          </p>
+          <div class="feature-tags-row">
+            <span class="feature-tag">Oral Studio Medellín</span>
+            <span class="feature-tag">Clínica Ártica (Palms Ave)</span>
+            <span class="feature-tag">Premium Dental</span>
+            <span class="feature-tag">Sonría Network</span>
+          </div>
+          <div class="btn-actions-grid">
+            <a href="../Smile in Medellin/index.html" class="btn btn-gold"><i class="fa-solid fa-globe"></i> Open Portal</a>
+            <a href="../Smile in Medellin/index.html#admin-modal" class="btn btn-outline" onclick="window.location.href='../Smile in Medellin/index.html';"><i class="fa-solid fa-users"></i> CRM Leads</a>
+            <a href="../Smile in Medellin/presentation.html" class="btn btn-presenter">
+              <i class="fa-solid fa-microphone-lines"></i> Launch AI Slideshow (English & Spanish)
+            </a>
+          </div>
+        </div>
+      </div>
+
+    
+      <!-- Vertical 3: Tattoo Tourism & Concierge -->
+      <div class="vertical-card">
+        <div class="vertical-header-img">
+          <img src="../Medellin Ink Hub/assets/scraped_tattoos/santa_tinta/santa_tinta_work_1.png" alt="Tattoo Tourism Medellin">
+          <span class="vertical-tag-pill"><i class="fa-solid fa-paintbrush"></i> Provenza Master Tattoo Concierge</span>
+        </div>
+        <div class="vertical-body">
+          <h3>Medellín Ink Hub</h3>
+          <p>
+            Turnkey tattoo tourism platform pairing North American collectors with master artists in Provenza and El Poblado at 70% savings, including VIP MDE airport transfers, boutique stays, and medical-grade aftercare.
+          </p>
+          <div class="feature-tags-row">
+            <span class="feature-tag">Santa Tinta (Provenza)</span>
+            <span class="feature-tag">Bianco Tattoo (Provenza)</span>
+            <span class="feature-tag">Studio 13 (Calle 10)</span>
+            <span class="feature-tag">Keibyn Pabón</span>
+          </div>
+          <div class="btn-actions-grid">
+            <a href="../Medellin Ink Hub/index.html" class="btn btn-gold"><i class="fa-solid fa-globe"></i> Open Portal</a>
+            <a href="../Medellin Ink Hub/admin.html" class="btn btn-outline"><i class="fa-solid fa-users"></i> CRM Leads</a>
+            <a href="../Medellin Ink Hub/presentation.html" class="btn btn-presenter">
+              <i class="fa-solid fa-microphone-lines"></i> Launch Pitch & Demo Deck
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Official Verifications Bar -->
+    <div class="verification-bar">
+      <div class="verif-info">
+        <h4><i class="fa-solid fa-shield-halved text-gold"></i> Direct Legal & Credential Verification Lookup</h4>
+        <p>100% compliant with Colombian Ministry of Health (MinSalud) and official medical societies.</p>
+      </div>
+      <div class="verif-badges">
+        <a href="https://cirugiaplastica.org.co/" target="_blank" rel="noopener" class="badge-check">
+          <i class="fa-solid fa-check"></i> SCCP Board Search
+        </a>
+        <a href="https://web.sispro.gov.co/" target="_blank" rel="noopener" class="badge-check">
+          <i class="fa-solid fa-check"></i> ReTHUS License Lookup
+        </a>
+        <a href="https://prestadores.minsalud.gov.co/" target="_blank" rel="noopener" class="badge-check">
+          <i class="fa-solid fa-check"></i> REPS Quirófanos
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="master-footer">
+    <div class="container">
+      <p>© 2026 Medellín Medical Tourism Master Hub • El Poblado, Milla de Oro, Medellín, Colombia</p>
+    </div>
+  </footer>
+
+</body>
+</html>

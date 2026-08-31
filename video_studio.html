@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medellín Medical Tourism • Remotion Video & Promo Reel Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,600&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #080a0f;
+      --bg-panel: #11141f;
+      --gold-primary: #d4af37;
+      --gold-light: #f5d77f;
+      --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa7c11 100%);
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Studio Bar */
+    .studio-nav {
+      background: #0d1017;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .studio-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold-gradient);
+      color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 1.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .studio-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 24px;
+      padding: 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Sidebar Controls */
+    .sidebar-panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .panel-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    .reel-choice-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .reel-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 14px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .reel-btn:hover, .reel-btn.active {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-primary);
+    }
+
+    .reel-btn strong {
+      font-size: 0.95rem;
+      color: var(--gold-light);
+    }
+
+    .reel-btn span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .format-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-format {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-format.active {
+      background: var(--gold-gradient);
+      color: #111;
+      border-color: transparent;
+    }
+
+    /* Video Player Canvas Stage */
+    .stage-container {
+      background: #050608;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-viewport-9-16 {
+      width: 360px;
+      height: 640px;
+      background: #000;
+      border: 2px solid var(--gold-primary);
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .video-viewport-16-9 {
+      width: 720px;
+      height: 405px;
+      background: #000;
+      border: 2px solid var(--gold-primary);
+      border-radius: 14px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.2);
+    }
+
+    .video-layer-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 6s ease, opacity 0.6s ease;
+      transform: scale(1);
+    }
+
+    .video-layer-bg.zooming {
+      transform: scale(1.18);
+    }
+
+    .video-overlay-gradient {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
+    }
+
+    .video-caption-box {
+      position: absolute;
+      bottom: 40px;
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      text-align: center;
+    }
+
+    .badge-promo {
+      background: var(--gold-gradient);
+      color: #111;
+      font-weight: 800;
+      font-size: 0.72rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .caption-hook {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .caption-sub {
+      font-size: 0.85rem;
+      color: var(--gold-light);
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    /* Video Control HUD */
+    .video-controls-bar {
+      margin-top: 24px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-play-video {
+      background: var(--gold-gradient);
+      color: #111;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .progress-bar-wrap {
+      width: 240px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gold-primary);
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="studio-nav">
+    <div class="studio-brand">
+      <div class="brand-icon"><i class="fa-solid fa-video"></i></div>
+      <div>
+        <div class="brand-title">Medellín Medical Tourism Video Studio</div>
+      </div>
+    </div>
+    <div>
+      <a href="../Curvas Medellin Body Contouring/index.html" style="color:#fff; text-decoration:none; font-size:0.85rem; margin-right:16px;">
+        <i class="fa-solid fa-arrow-left"></i> Back to Hub
+      </a>
+    </div>
+  </header>
+
+  <div class="studio-layout">
+
+    <!-- Left Controls -->
+    <aside class="sidebar-panel">
+      <div class="panel-title"><i class="fa-solid fa-film text-gold"></i> Select Video Composition</div>
+
+      <div class="reel-choice-list">
+        <button class="reel-btn active" onclick="loadReel(1)">
+          <strong>Reel #1: Curvas & Estética</strong>
+          <span>BBL & Breast Augmentation at 67% Savings</span>
+        </button>
+        <button class="reel-btn" onclick="loadReel(2)">
+          <strong>Reel #2: Smile in Medellín</strong>
+          <span>5-Day Hollywood Smile with E-Max Veneers</span>
+        </button>
+        <button class="reel-btn" onclick="loadReel(3)">
+          <strong>Reel #3: Safe Surgery Standards</strong>
+          <span>SCCP, ReTHUS & Sterile Quirófanos in El Poblado</span>
+        </button>
+      </div>
+
+      <div class="panel-title" style="margin-top:10px;"><i class="fa-solid fa-mobile-screen"></i> Aspect Ratio</div>
+      <div class="format-toggle">
+        <button class="btn-format active" id="btn-9-16" onclick="setAspectRatio('9-16')">
+          <i class="fa-solid fa-mobile"></i> 9:16 Reel
+        </button>
+        <button class="btn-format" id="btn-16-9" onclick="setAspectRatio('16-9')">
+          <i class="fa-solid fa-desktop"></i> 16:9 Video
+        </button>
+      </div>
+
+      <div style="margin-top:auto; font-size:0.8rem; color:var(--text-muted);">
+        <i class="fa-solid fa-wand-magic-sparkles text-gold"></i> Real photos synced with Microsoft Neural AI narration audio.
+      </div>
+    </aside>
+
+    <!-- Main Stage Canvas -->
+    <main class="stage-container">
+      <div class="video-viewport-9-16" id="videoViewport">
+        <img src="../Curvas Medellin Body Contouring/assets/scraped_photos/dra_daniela/dra_daniela_photo_2.webp" class="video-layer-bg" id="videoBg" alt="Video Frame">
+        <div class="video-overlay-gradient"></div>
+        <div class="video-caption-box">
+          <span class="badge-promo" id="videoBadge">MEDELLÍN BODY CONTOURING</span>
+          <div class="caption-hook" id="videoHook">TRANSFORM YOUR BODY IN COLOMBIA</div>
+          <div class="caption-sub" id="videoSub">Save 67% with Board-Certified SCCP Surgeons</div>
+        </div>
+      </div>
+
+      <div class="video-controls-bar">
+        <button class="btn-play-video" id="playBtn" onclick="togglePlay()">
+          <i class="fa-solid fa-play"></i> <span id="playLabel">Play Reel</span>
+        </button>
+        <div class="progress-bar-wrap">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span id="timeDisplay" style="font-size:0.85rem; color:var(--text-muted);">00:00 / 00:15</span>
+      </div>
+    </main>
+
+  </div>
+
+  <audio id="reelAudio"></audio>
+
+  <script>
+    const reelsData = {
+      1: {
+        title: "Curvas & Estética",
+        badge: "MEDELLÍN BODY CONTOURING",
+        scenes: [
+          {
+            img: "../Curvas Medellin Body Contouring/assets/scraped_photos/dra_daniela/dra_daniela_photo_2.webp",
+            hook: "ELITE TRANSFORMATION IN MEDELLÍN",
+            sub: "High-Def Lipo 360 & Breast Augmentation",
+            duration: 4000
+          },
+          {
+            img: "../Curvas Medellin Body Contouring/assets/scraped_photos/iq_interquirofanos/iq_interquirofanos_photo_1.webp",
+            hook: "JCI-LEVEL SURGICAL SUITES",
+            sub: "IQ InterQuirófanos & Clínica Especialistas El Poblado",
+            duration: 4000
+          },
+          {
+            img: "../Curvas Medellin Body Contouring/assets/scraped_photos/dr_tobon/dr_tobon_photo_4.webp",
+            hook: "SAVE UP TO 67% IN USD",
+            sub: "All-Inclusive VIP Recovery House Packages",
+            duration: 4000
+          }
+        ],
+        audio: "../Curvas Medellin Body Contouring/assets/narration/slide_1_en.mp3"
+      },
+      2: {
+        title: "Smile in Medellín",
+        badge: "5-DAY HOLLYWOOD SMILE",
+        scenes: [
+          {
+            img: "../Smile in Medellin/assets/scraped_dental_photos/oral_studio/oral_studio_photo_5.webp",
+            hook: "MASTER CAD/CAM PORCELAIN VENEERS",
+            sub: "Robotic E-Max® Milling at Oral Studio El Poblado",
+            duration: 4000
+          },
+          {
+            img: "../Smile in Medellin/assets/scraped_dental_photos/clinica_artica/clinica_artica_photo_5.jpg",
+            hook: "SWISS STRAUMANN® IMPLANTS",
+            sub: "Clínica Ártica Palms Avenue • 75% Savings",
+            duration: 4000
+          },
+          {
+            img: "../Smile in Medellin/assets/scraped_dental_photos/premium_dental/premium_dental_photo_8.jpg",
+            hook: "FULL SMILE REVEAL IN 5 DAYS",
+            sub: "Fly Home with Your Dream Smile",
+            duration: 4000
+          }
+        ],
+        audio: "../Smile in Medellin/assets/narration/slide_1_en.mp3"
+      },
+      3: {
+        title: "Certified Safety",
+        badge: "100% VERIFIED STANDARDS",
+        scenes: [
+          {
+            img: "../Curvas Medellin Body Contouring/assets/scraped_photos/iq_interquirofanos/iq_interquirofanos_photo_3.webp",
+            hook: "BOARD-CERTIFIED PLASTIC SURGERY",
+            sub: "MinSalud ReTHUS & SCCP Official Registry",
+            duration: 4000
+          },
+          {
+            img: "../Curvas Medellin Body Contouring/assets/scraped_photos/dr_zamir/dr_zamir_photo_1.webp",
+            hook: "SUBCUTANEOUS FAT GRAFTING ONLY",
+            sub: "Zero Intramuscular Injection Protocol",
+            duration: 4000
+          }
+        ],
+        audio: "../Curvas Medellin Body Contouring/assets/narration/slide_2_en.mp3"
+      }
+    };
+
+    let activeReelId = 1;
+    let isPlaying = false;
+    let sceneIndex = 0;
+    let sceneTimer = null;
+    const audioEl = document.getElementById("reelAudio");
+    const bgImg = document.getElementById("videoBg");
+    const badgeEl = document.getElementById("videoBadge");
+    const hookEl = document.getElementById("videoHook");
+    const subEl = document.getElementById("videoSub");
+    const playBtn = document.getElementById("playBtn");
+    const playLabel = document.getElementById("playLabel");
+    const progressFill = document.getElementById("progressFill");
+    const timeDisplay = document.getElementById("timeDisplay");
+
+    function loadReel(id) {
+      activeReelId = id;
+      document.querySelectorAll(".reel-btn").forEach((b, idx) => {
+        b.classList.toggle("active", idx + 1 === id);
+      });
+      stopReel();
+      renderScene(0);
+    }
+
+    function renderScene(idx) {
+      const reel = reelsData[activeReelId];
+      if (!reel || !reel.scenes[idx]) return;
+      const sc = reel.scenes[idx];
+
+      bgImg.classList.remove("zooming");
+      bgImg.src = sc.img;
+      badgeEl.innerText = reel.badge;
+      hookEl.innerText = sc.hook;
+      subEl.innerText = sc.sub;
+
+      setTimeout(() => bgImg.classList.add("zooming"), 50);
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        stopReel();
+      } else {
+        startReel();
+      }
+    }
+
+    function startReel() {
+      isPlaying = true;
+      playLabel.innerText = "Pause Reel";
+      playBtn.querySelector("i").className = "fa-solid fa-pause";
+
+      const reel = reelsData[activeReelId];
+      audioEl.src = reel.audio;
+      audioEl.play().catch(e => console.warn(e));
+
+      sceneIndex = 0;
+      runNextScene();
+    }
+
+    function runNextScene() {
+      const reel = reelsData[activeReelId];
+      if (sceneIndex >= reel.scenes.length) {
+        sceneIndex = 0;
+      }
+      renderScene(sceneIndex);
+
+      const dur = reel.scenes[sceneIndex].duration;
+      sceneIndex++;
+      sceneTimer = setTimeout(() => {
+        if (isPlaying) runNextScene();
+      }, dur);
+    }
+
+    function stopReel() {
+      isPlaying = false;
+      playLabel.innerText = "Play Reel";
+      playBtn.querySelector("i").className = "fa-solid fa-play";
+      if (sceneTimer) clearTimeout(sceneTimer);
+      audioEl.pause();
+    }
+
+    audioEl.ontimeupdate = () => {
+      if (audioEl.duration) {
+        const pct = (audioEl.currentTime / audioEl.duration) * 100;
+        progressFill.style.width = pct + "%";
+        const cur = formatTime(audioEl.currentTime);
+        const total = formatTime(audioEl.duration);
+        timeDisplay.innerText = `${cur} / ${total}`;
+      }
+    };
+
+    audioEl.onended = () => {
+      stopReel();
+      progressFill.style.width = "0%";
+    };
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function setAspectRatio(ratio) {
+      const vp = document.getElementById("videoViewport");
+      const btn916 = document.getElementById("btn-9-16");
+      const btn169 = document.getElementById("btn-16-9");
+
+      if (ratio === '9-16') {
+        vp.className = "video-viewport-9-16";
+        btn916.classList.add("active");
+        btn169.classList.remove("active");
+      } else {
+        vp.className = "video-viewport-16-9";
+        btn169.classList.add("active");
+        btn916.classList.remove("active");
+      }
+    }
+  </script>
+</body>
+</html>
